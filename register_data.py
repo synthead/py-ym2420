@@ -85,9 +85,6 @@ class RegisterData(object):
   def rhythm_instruments(self, value):
     self.set_range(0x0E, 0, 4, value)
 
-  def f_number_lsb(self, index, value):
-    self.set_range(0x10 + index, 0, 7, value)
-
   def sustain_on(self, index, value):
     self.set_bit(0x20 + index, 5, value)
 
@@ -96,9 +93,6 @@ class RegisterData(object):
 
   def octave(self, index, value):
     self.set_range(0x20 + index, 1, 3, value)
-
-  def f_number_msb(self, index, value):
-    self.set_bit(0x20 + index, 0, value)
 
   def instrument(self, index, value):
     self.set_range(0x30 + index, 4, 7, value)
