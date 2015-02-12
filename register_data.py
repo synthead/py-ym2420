@@ -29,6 +29,17 @@ class RegisterData(object):
   def set_byte(self, address, value):
     self.set_range(address, 0, 7, value)
 
+  def frequency(self, index, value):
+    upper_frequency = [(value >> bit) % 2 for bit in range(4, 9)]
+    if upper_frequency != self.register_data[0x10 + index][:5]:
+      self.register_data[0x10 + index][:5] = upper_frequency
+      self._add_pending_write(0x10 + index)
+
+    lower_frequency = [(value >> bit) % 2 for bit in range(4)]
+    if lower_frequency != self.register_data[0x20 + index][:4]:
+      self.register_data[0x20 + index][:4] = lower_frequency
+      self._add_pending_write(0x20 + index)
+
   def amplitude_modulation(self, index, value):
     self.set_bit(0x00 + index, 7, value)
 
