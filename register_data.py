@@ -26,7 +26,7 @@ class RegisterData(object):
         (value >> bit) % 2 for bit in range(last_bit + 1 - first_bit)]
     self._add_pending_write(address)
 
-  def raw_data(self, address, value):
+  def set_byte(self, address, value):
     self.set_range(address, 0, 7, value)
 
   def amplitude_modulation(self, index, value):

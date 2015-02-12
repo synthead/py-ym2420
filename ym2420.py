@@ -19,9 +19,9 @@ def write_changes():
 
 
 # A nice piano!
-register_data.raw_data(16, 171)
-register_data.raw_data(48, 48)
-register_data.raw_data(32, 28)
+register_data.set_byte(16, 171)
+register_data.set_byte(48, 48)
+register_data.set_byte(32, 28)
 write_changes()
 
 import IPython
