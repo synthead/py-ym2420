@@ -92,7 +92,7 @@ class RegisterData(object):
     self.set_bit(0x20 + index, 4, value)
 
   def octave(self, index, value):
-    self.set_range(0x20 + index, 1, 3, value)
+    self.set_range(0x10 + index, 5, 7, value)
 
   def instrument(self, index, value):
     self.set_range(0x30 + index, 4, 7, value)
