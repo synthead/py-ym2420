@@ -6,7 +6,7 @@ from register_data import RegisterData
 
 
 gpio_controller = GPIOController(
-    IC=103, CS=104, A0=83, Dn=(88, 116, 115, 101, 100, 108, 97, 87))
+    IC=103, CS=104, A0=118, Dn=(88, 116, 115, 101, 100, 108, 97, 87))
 
 register_data = RegisterData()
 
