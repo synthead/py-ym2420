@@ -6,9 +6,10 @@ from register_data import RegisterData
 
 
 gpio_controller = GPIOController(
-    CS=104, A0=83, D0=88, D1=116, D2=115, D3=101, D4=100, D5=108, D6=97, D7=87)
+    IC=103, CS=104, A0=83, Dn=(88, 116, 115, 101, 100, 108, 97, 87))
 
 register_data = RegisterData()
+
 
 def write_changes():
   for address, bits in register_data.pending_writes.items():
@@ -16,4 +17,15 @@ def write_changes():
 
   register_data.pending_writes.clear()
 
+
+# A nice piano!
+register_data.raw_data(16, 171)
+register_data.raw_data(48, 48)
+register_data.raw_data(32, 28)
 write_changes()
+
+import IPython
+register_data.key_on(0, 0)
+write_changes()
+
+IPython.embed()

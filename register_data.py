@@ -3,13 +3,13 @@ import collections
 
 class RegisterData(object):
   def __init__(self):
-    self.register_data = collections.OrderedDict(
-        (address, [0, 0, 0, 0, 0, 0, 0, 0]) for address in (
+    self.register_data = {
+        address: [0] * 8 for address in (
             0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x0E, 0x10, 0x11,
             0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x20, 0x21, 0x22, 0x23,
             0x24, 0x25, 0x26, 0x27, 0x28, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35,
-            0x36, 0x37, 0x38))
-    self.pending_writes = self.register_data.copy()
+            0x36, 0x37, 0x38)}
+    self.pending_writes = collections.OrderedDict()
 
   def _add_pending_write(self, address):
     if address in self.pending_writes:
@@ -23,7 +23,7 @@ class RegisterData(object):
 
   def _set_range(self, address, first_bit, last_bit, value):
     self.register_data[address][first_bit:last_bit + 1] = [
-        int(bit) for bit in format(value, "0%db" % (last_bit + 1 - first_bit))]
+        (value >> bit) % 2 for bit in range(last_bit + 1 - first_bit)]
     self._add_pending_write(address)
 
   def raw_data(self, address, value):
