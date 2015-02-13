@@ -1,7 +1,7 @@
 import wiringpi2
 
 
-class Pin(object):
+class DigitalOutPin(object):
   def __init__(self, gpio_channel):
     self.gpio_channel = gpio_channel
     wiringpi2.pinMode(gpio_channel, 1)
@@ -14,8 +14,8 @@ class YM2420(object):
   def __init__(self, IC, CS, A0, Dn):
     wiringpi2.wiringPiSetupGpio()
 
-    self.IC, self.CS, self.A0 = [Pin(pin) for pin in (IC, CS, A0)]
-    self.Dn = [Pin(pin) for pin in Dn]
+    self.IC, self.CS, self.A0 = [DigitalOutPin(pin) for pin in (IC, CS, A0)]
+    self.Dn = [DigitalOutPin(pin) for pin in Dn]
 
     self.reset()
 
