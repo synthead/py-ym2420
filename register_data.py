@@ -29,6 +29,9 @@ class RegisterData(object):
   def set_byte(self, address, value):
     self.set_range(address, 0, 7, value)
 
+  def frequency(self, index, frequency):
+    self.f_number(index, round(frequency * 0.65536))
+
   def f_number(self, index, value):
     upper_frequency = [(value >> bit) % 2 for bit in range(4, 9)]
     if upper_frequency != self.register_data[0x10 + index][:5]:
