@@ -1,19 +1,17 @@
 #!/usr/bin/python
 
-
-from gpio_controller import GPIOController
+from gpio_controller import YM2420
 from register_data import RegisterData
 
 
-gpio_controller = GPIOController(
+ym2420 = YM2420(
     IC=103, CS=104, A0=118, Dn=(88, 116, 115, 101, 100, 108, 97, 87))
 
 register_data = RegisterData()
 
-
 def write_changes():
   for address, bits in register_data.pending_writes.items():
-    gpio_controller.write(address, bits)
+    ym2420.write(address, bits)
 
   register_data.pending_writes.clear()
 

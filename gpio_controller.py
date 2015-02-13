@@ -10,7 +10,7 @@ class Pin(object):
     wiringpi2.digitalWrite(self.gpio_channel, state)
 
 
-class GPIOController(object):
+class YM2420(object):
   def __init__(self, IC, CS, A0, Dn):
     wiringpi2.wiringPiSetupGpio()
 
