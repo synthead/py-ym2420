@@ -12,8 +12,6 @@ class DigitalOutPin(object):
 
 class YM2420(object):
   def __init__(self, IC, CS, A0, Dn):
-    wiringpi2.wiringPiSetupGpio()
-
     self.IC, self.CS, self.A0 = [DigitalOutPin(pin) for pin in (IC, CS, A0)]
     self.Dn = [DigitalOutPin(pin) for pin in Dn]
 
@@ -71,3 +69,6 @@ class AnalogInputPin(object):
       return (
           (self.read() - self.min_value) / (self.max_value - self.min_value)
           ) * 100
+
+
+wiringpi2.wiringPiSetupGpio()
