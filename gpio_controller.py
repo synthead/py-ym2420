@@ -69,4 +69,5 @@ class AnalogInputPin(object):
       return 100
     else:
       return (
-          (value - self.min_value) / (self.max_value - self.min_value)) * 100
+          (self.read() - self.min_value) / (self.max_value - self.min_value)
+          ) * 100
