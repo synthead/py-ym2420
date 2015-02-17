@@ -11,9 +11,10 @@ class DigitalOutPin(object):
 
 
 class YM2420(object):
-  def __init__(self, IC, CS, A0, Dn):
+  def __init__(self, IC, CS, A0, Dn, log=False):
     self.IC, self.CS, self.A0 = [DigitalOutPin(pin) for pin in (IC, CS, A0)]
     self.Dn = [DigitalOutPin(pin) for pin in Dn]
+    self.log = log
 
     self.reset()
 
@@ -24,7 +25,8 @@ class YM2420(object):
     self.IC.write(1)
 
   def write(self, address, content):
-    print("0x{0:02x}: {1}".format(address, content))
+    if self.log:
+      print("0x{0:02x}: {1}".format(address, content))
 
     for bit, pin in enumerate(self.Dn):
       pin.write((address >> bit) % 2)
